@@ -19,6 +19,12 @@ class Basket
     @basket[product] = @basket[product] + 1
   end
 
+  def remove_product(product)
+    if @basket[product] > 0
+      @basket[product] = @basket[product] - 1
+    end
+  end
+
 end
 
 def checkout
