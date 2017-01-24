@@ -1,32 +1,36 @@
 class Basket
 
   def initialize
-    @basket = { "FR1" => 0,
-                "SR1" => 0,
-                "CF1" => 0,
-    }
+    @hash = {'FR1' => 0,
+             'SR1' => 0,
+             'CF1' => 0}
   end
 
-  def display_basket
-    return "#{@basket} Cost = £#{total}"
+  def show_basket
+    @hash
   end
 
-  def total
-    ((@basket["FR1"] * 311) + (@basket["SR1"] * 500) + (@basket["CF1"] * 1123)) / 100.00
-  end
-
-  def add_product(product)
-    @basket[product] = @basket[product] + 1
-  end
-
-  def remove_product(product)
-    if @basket[product] > 0
-      @basket[product] = @basket[product] - 1
+  def add_product(p_code)
+    if @hash.key?(p_code)
+      @hash[p_code] = @hash[p_code] + 1
+    else
+      print("Error")
     end
   end
 
-end
+  def remove_product(p_code)
+    if @hash.key?(p_code)
+      if @hash[p_code] > 0
+        @hash[p_code] = @hash[p_code] - 1
+      else
+        print("Error")
+      end
+    else
+      print("Error")
+    end
+  end
 
-def checkout
-  Basket.new
+
+
+
 end

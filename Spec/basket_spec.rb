@@ -1,18 +1,45 @@
 require 'basket'
 
 describe Basket do
-  it "add product to basket" do
-     new_basket = checkout
-     new_basket.add_product("SR1")
-     expect(new_basket.display_basket).to eq('{"FR1"=>0, "SR1"=>1, "CF1"=>0} Cost = £5.0')
+  it "is empty" do
+    basket = Basket.new
+    expect(basket.show_basket['FR1']).to eq(0)
+    expect(basket.show_basket['SR1']).to eq(0)
+    expect(basket.show_basket['CF1']).to eq(0)
   end
 
-  it "remove product from basket" do
-    new_basket = checkout
-    new_basket.add_product("SR1")
-    new_basket.add_product("FR1")
-    new_basket.remove_product("SR1")
-    expect(new_basket.display_basket).to eq ('{"FR1"=>1, "SR1"=>0, "CF1"=>0} Cost = £3.11')
+  it "add products" do
+    basket = Basket.new
+    basket.add_product('FR1')
+    expect(basket.show_basket['FR1']).to eq(1)
+    expect(basket.show_basket['SR1']).to eq(0)
+    expect(basket.show_basket['CF1']).to eq(0)
+  end
+
+  it "does not add invalid product" do
+    basket = Basket.new
+    basket.add_product('AAA')
+    expect(basket.show_basket['FR1']).to eq(0)
+    expect(basket.show_basket['SR1']).to eq(0)
+    expect(basket.show_basket['CF1']).to eq(0)
+  end
+
+  it "remove products" do
+    basket = Basket.new
+    basket.add_product('SR1')
+    basket.add_product('CF1')
+    basket.remove_product('SR1')
+    expect(basket.show_basket['FR1']).to eq(0)
+    expect(basket.show_basket['SR1']).to eq(0)
+    expect(basket.show_basket['CF1']).to eq(1)
+  end
+
+  it "does not remove invalid product" do
+    basket = Basket.new
+    basket.remove_product('AAA')
+    expect(basket.show_basket['FR1']).to eq(0)
+    expect(basket.show_basket['SR1']).to eq(0)
+    expect(basket.show_basket['CF1']).to eq(0)
   end
 
 end
