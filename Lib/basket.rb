@@ -30,4 +30,15 @@ class Basket
     end
   end
 
+  def total
+    @hash2 = {'FR1' => 311,
+             'SR1' => 500,
+             'CF1' => 1123}
+
+    arr = @hash.map { |key, value| value * @hash2[key] if @hash2.key? key }
+    sum = 0
+    arr.each { |x| sum += x }
+    sum
+  end
+
 end
