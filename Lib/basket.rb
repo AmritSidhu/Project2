@@ -35,7 +35,7 @@ class Basket
              'SR1' => 500,
              'CF1' => 1123}
 
-    arr = @hash.map { |key, value| value * @hash2[key] if @hash2.key? key }
+    arr = @hash.map {|key, value| value * @hash2[key] if @hash2.key? key}
     sum = 0
     arr.each { |x| sum += x }
     sum

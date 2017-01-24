@@ -49,4 +49,5 @@ describe Basket do
     basket.add_product('CF1')
     expect(basket.total).to eq(1934)
   end
+  
 end
