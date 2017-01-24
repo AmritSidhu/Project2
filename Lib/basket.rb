@@ -30,7 +30,4 @@ class Basket
     end
   end
 
-
-
-
 end

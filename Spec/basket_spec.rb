@@ -41,5 +41,4 @@ describe Basket do
     expect(basket.show_basket['SR1']).to eq(0)
     expect(basket.show_basket['CF1']).to eq(0)
   end
-
 end
