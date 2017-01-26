@@ -32,13 +32,35 @@ class Basket
 
   def total
     @hash2 = {'FR1' => 311,
-             'SR1' => 500,
-             'CF1' => 1123}
+              'SR1' => 500,
+              'CF1' => 1123}
 
     arr = @hash.map {|key, value| value * @hash2[key] if @hash2.key? key}
     sum = 0
     arr.each { |x| sum += x }
     sum
+  end
+
+  def bogof
+    if @hash['FR1'] > 1 && @hash['FR1'] % 2 == 0
+       (@hash['FR1'] / 2) * 311
+     elsif @hash['FR1'] > 1
+       ((@hash['FR1'] - 1)/2 * 311) + 311
+     elsif @hash['FR1'] <= 1
+       @hash['FR1'] * 311
+     end
+  end
+
+  def discount_strawberries
+    if @hash['SR1'] >= 3
+      @hash['SR1'] * 450
+    else
+      @hash['SR1'] * 500
+    end
+  end
+
+  def overall_discount
+    bogof + discount_strawberries + (@hash["CF1"] * 1123)
   end
 
 end
